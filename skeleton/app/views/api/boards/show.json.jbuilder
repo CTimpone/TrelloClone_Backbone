@@ -8,7 +8,7 @@ json.set! :lists do
   json.array! (@board.lists) do |list|
     json.extract! list, :title, :board_id, :ord, :id
     json.cards list.cards do |card|
-      json.extract! card, :title, :list_id, :description, :ord
+      json.extract! card, :title, :list_id, :description, :ord, :id
     end
   end
 end
