@@ -33,13 +33,8 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 
   deleteList: function (event) {
     event.preventDefault();
-    this.model.destroy({
-      success: function () {
-        ;
-      }.bind(this)
-    });
+    this.model.destroy();
 
-    console.log(this.model)
 
   }
 })
