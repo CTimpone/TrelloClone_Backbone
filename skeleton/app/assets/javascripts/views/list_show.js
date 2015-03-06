@@ -6,8 +6,13 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 
   template: JST["list_show"],
 
+  events: {
+    "click .destroy-list": "deleteList"
+  },
+
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model, "destroy", this.remove);
   },
 
   render: function () {
@@ -21,6 +26,20 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     //   });
     // }
 
+    this.$el.append($("<button class='destroy-list'>Delete</button>"));
+
     return this;
+  },
+
+  deleteList: function (event) {
+    event.preventDefault();
+    this.model.destroy({
+      success: function () {
+        ;
+      }.bind(this)
+    });
+
+    console.log(this.model)
+
   }
 })
