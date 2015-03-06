@@ -1,7 +1,8 @@
 TrelloClone::Application.routes.draw do
   root to: 'static_pages#root'
 
-  resources :users
+  resources :users, only: [:new, :create]
+  resource :user, only: :show
   resource :session
 
   namespace :api, defaults: { format: :json } do

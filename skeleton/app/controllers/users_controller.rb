@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    if signed_in?
+      render json: current_user
+    else
+      render json: {errors: "Not signed In"}
+    end
+  end
+
   private
 
   def user_params
