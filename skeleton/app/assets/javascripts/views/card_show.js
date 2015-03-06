@@ -6,6 +6,7 @@ TrelloClone.Views.CardShow = Backbone.View.extend({
   },
 
   events: {
+    "click .hover-visible": "deleteCard",
     "dblclick div": "allowChange",
     "submit .make-card-changes": "editCard"
   },
@@ -33,6 +34,11 @@ TrelloClone.Views.CardShow = Backbone.View.extend({
     data.list_id = this.model.get('list_id');
 
     this.model.save(data, {wait: true})
+  },
+
+  deleteCard: function (event) {
+    event.preventDefault();
+    this.model.destroy();
   }
 
 });
