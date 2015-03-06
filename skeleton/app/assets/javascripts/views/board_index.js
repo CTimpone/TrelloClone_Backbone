@@ -12,11 +12,13 @@ TrelloClone.Views.BoardIndex = Backbone.CompositeView.extend({
     this.$el.html(baseContent)
 
     var $selector = this.$el.find('.board-list');
-    
+
     this.collection.each(function (board) {
       var subView = new TrelloClone.Views.BoardIndexItem ({model: board});
       this.addSubview($selector, subView);
     }.bind(this))
+
+    $selector.append($("<li class='new-form'><a href='#board/new'>Create Board</a>"))
 
 
     return this;
