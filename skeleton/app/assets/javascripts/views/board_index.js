@@ -1,8 +1,6 @@
 TrelloClone.Views.BoardIndex = Backbone.View.extend({
 
   initialize: function () {
-    this.collection = new TrelloClone.Collections.Boards();
-    this.collection.fetch();
     this.listenTo(this.collection, "sync", this.render);
     this._subViews = [];
   },

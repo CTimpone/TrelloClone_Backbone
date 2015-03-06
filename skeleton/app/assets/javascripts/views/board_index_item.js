@@ -7,7 +7,6 @@ TrelloClone.Views.BoardIndexItem = Backbone.View.extend({
   addClass: "board-list-item",
 
   render: function () {
-    console.log(this.model);
     var content = this.template({board: this.model});
     this.$el.html(content);
 
