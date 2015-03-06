@@ -6,15 +6,22 @@ TrelloClone.Routers.Router = Backbone.Router.extend({
   initialize: function ($el) {
     this.$el = $el;
     this._user = new TrelloClone.Models.User();
-    this.checkUserStatus();
+    this._checkUserStatus();
     this.listenTo(this._user, "sync", this.boardIndex);
   },
 
   boardIndex: function () {
-    
+    var indexView = new TrelloClone.Views.BoardIndex();
+    this._swapView(indexView);
   },
 
-  checkUserStatus: function (options) {
+  _swapView: function (view) {
+    this.currentView && this.currentView.remove();
+    this.currentView = view;
+    this.$el.html(this.currentView.render().$el);
+  },
+
+  _checkUserStatus: function (options) {
     this._user.fetch({
       error: function () {
         console.log(user);
