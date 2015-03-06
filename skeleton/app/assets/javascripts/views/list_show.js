@@ -20,14 +20,13 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     var content = this.template({list: this.model});
     this.$el.html(content);
 
-    var $selector = this.$el.find("ul");
-    // 
-    // if (this.cards.length > 0) {
-    //   this.cards.each(function (card) {
-    //     var subView = new TrelloClone.Views.CardShow({model: card});
-    //     this.addSubview($selector, subView);
-    //   });
-    // }
+    if (this.cards.length > 0) {
+      this.cards.each(function (card) {
+        var $selector = this.$el.find("ul");
+        var subView = new TrelloClone.Views.CardShow({model: card});
+        this.addSubview("ul", subView);
+      }.bind(this));
+    }
 
     this.$el.append($("<button class='destroy-list'>Delete</button>"));
 
