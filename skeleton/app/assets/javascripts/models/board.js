@@ -14,7 +14,9 @@ TrelloClone.Models.Board = Backbone.Model.extend({
       x = response.lists
       this.lists().set(response.lists);
       this._lists.each(function (list, index) {
-        list._cards = response.lists[index].cards;
+        l = list
+        r = response
+        list.cards().set(response.lists[index].cards);
       });
       delete response.lists;
     }

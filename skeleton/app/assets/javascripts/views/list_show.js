@@ -11,6 +11,7 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.cards = this.model.cards();
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model, "destroy", this.remove);
   },
@@ -18,10 +19,12 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({list: this.model});
     this.$el.html(content);
-    //
-    // if (this.model.lists().length > 0) {
-    //   this.model.lists().each(function (list) {
-    //     var subView = new TrelloClone.Views.ListShow({model: list});
+
+    var $selector = this.$el.find("ul");
+    // 
+    // if (this.cards.length > 0) {
+    //   this.cards.each(function (card) {
+    //     var subView = new TrelloClone.Views.CardShow({model: card});
     //     this.addSubview($selector, subView);
     //   });
     // }
