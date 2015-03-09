@@ -1,0 +1,32 @@
+<form class="item-change">
+  <label>
+    Title
+    <input type="text" name="title" value="<%=item.escape('title')%>">
+  </label>
+
+  <br>
+
+  <label>
+    In Progress
+    <input type="radio"
+           name="done"
+           value="false"
+           <% if (item.escape('done') === "false") { %>
+            checked
+           <% } %>
+           >
+  </label>
+
+  <label>
+    Done
+    <input type="radio"
+           name="done"
+           value="true"
+           <% if (item.escape('done') === "true") { %>
+            checked
+           <% } %>
+           >
+  </label>
+
+  <button class="submit">Submit</button>
+</form>
