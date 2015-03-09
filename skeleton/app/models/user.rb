@@ -19,12 +19,18 @@ class User < ActiveRecord::Base
   has_many :boards
   has_many :card_assignments
   has_many :board_memberships
+  has_many :member_boards, through: :board_memberships, source: :board
 
   attr_reader :password
   after_initialize :ensure_session_token
 
   def gravatar_url
     "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"
+  end
+
+  def all_accessible_boards
+    all_boards = self.boards + self.member_boards
+    return all_boards
   end
 
   def self.find_by_credentials(user_params)
