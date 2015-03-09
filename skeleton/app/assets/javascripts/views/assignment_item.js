@@ -27,15 +27,13 @@ TrelloClone.Views.AssignmentItem = Backbone.CompositeView.extend({
     var $target = $(event.currentTarget)
 
     if ($target.context.checked) {
-      // create
+      var data = {user_id: this.user.id, card_id: this.model.id};
+      this.collection.create(data)
     } else {
       this.assignment.destroy({
         success: function () {
           this.assigned = false;
-        }.bind(this),
-        error: function () {
-          console.log('fail')
-        }
+        }.bind(this)
       });
     }
   }

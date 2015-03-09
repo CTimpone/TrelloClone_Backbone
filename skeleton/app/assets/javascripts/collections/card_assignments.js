@@ -7,5 +7,6 @@ TrelloClone.Collections.CardAssignments = Backbone.Collection.extend({
 
   initialize: function (options) {
     this.card_id = options.card_id;
+    this.user_id = options.user_id;
   }
 })

@@ -2,6 +2,12 @@ module Api
   class CardAssignmentsController < ApiController
 
     def create
+      @assignment = CardAssignment.create(card_assignment_params)
+      if @assignment
+        render json: @assignment
+      else
+        render json: {}
+      end
     end
 
     def destroy
@@ -17,6 +23,12 @@ module Api
       else
         render json: {}
       end
+    end
+
+    private
+
+    def card_assignment_params
+      params.require(:card_assignment).permit(:card_id, :user_id)
     end
 
   end
