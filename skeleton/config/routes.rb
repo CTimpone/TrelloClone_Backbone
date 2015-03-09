@@ -13,8 +13,6 @@ TrelloClone::Application.routes.draw do
     resources :cards, only: [:create, :update, :destroy] do
       resources :card_assignments, only: :index
     end
-
-    # resources :items
-    # resources :card_assignments
+    resources :items, only: [:create, :update]
   end
 end

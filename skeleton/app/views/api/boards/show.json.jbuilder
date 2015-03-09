@@ -22,6 +22,9 @@ json.set! :lists do
       json.assignments card.assigned_users do |user|
         json.extract! user, :email, :id
       end
+      json.items card.items do |item|
+        json.extract! item, :id, :card_id, :done, :title
+      end
     end
   end
 end

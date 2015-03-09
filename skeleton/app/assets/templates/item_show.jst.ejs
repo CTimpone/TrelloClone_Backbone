@@ -1,0 +1,5 @@
+ <% if (item.escape('done') === "false") {%>
+  <%= item.escape('title') %>: In Progress
+<% } else { %>
+  <%= item.escape('title') %>: Done
+<% } %>
