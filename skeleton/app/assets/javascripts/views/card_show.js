@@ -7,16 +7,21 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
 
   events: {
     "click .hover-visible": "deleteCard",
+    "click .add-item": "addItem",
     "dblclick div": "allowChange",
-    "submit .make-card-changes": "editCard"
+    "submit .make-card-changes": "editCard",
+    "submit .item-change": "createItem"
   },
 
   template_show: JST["card_show"],
 
   template_change: JST["card_change"],
 
+  template_add_item: JST["item_form"],
+
   initialize: function (options) {
     this.board = options.board;
+    this.items = this.model.items();
     this.assignments = new TrelloClone.Collections.CardAssignments({card_id: this.model.id})
     this.assignments.fetch();
   },
@@ -66,6 +71,27 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
   deleteCard: function (event) {
     event.preventDefault();
     this.model.destroy();
+  },
+
+  addItem: function (event) {
+    var item = new TrelloClone.Models.Item({card_id: this.model.id})
+    var content = this.template_add_item({item: item});
+    $(".item-form-container").html(content);
+    $(".item-form-container").prepend("<strong>New Item</strong>")
+
+    return this;
+  },
+
+  createItem: function (event) {
+    event.preventDefault();
+    var data = $(event.target).serializeJSON();
+    data.card_id = this.model.id;
+    
+    this.items.create(data, {
+      success: function () {
+        this.render();
+      }.bind(this)
+    })
   }
 
 });
