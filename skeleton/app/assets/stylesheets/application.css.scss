@@ -26,19 +26,20 @@ li {
   list-style: none;
 }
 
-li.card > div.hidden-button > button{
+li.card > div.hidden-button .invis {
   display: none;
 }
 
-li.card:hover > div.hidden-button > button{
-  display: block;
+li.card:hover > div.hidden-button .invis {
+  display: inline;
 }
 
-div#main h2.board-index-header {
-  margin: auto;
+div#main > div > h2 {
+  margin: 10px auto;
   display: block;
   font-size: 44px;
   width: 260px;
+
 }
 
 ul.board-list > li {
@@ -85,4 +86,102 @@ li.to-board > button.destroy {
 ul.board-list > li > a:hover {
   background: black;
   color: white;
+}
+
+div#main > form.new-board {
+  width: 600px;
+  min-height: 200px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 50px auto;
+  background: #ccc;
+}
+
+div#main > form.new-board > h1 {
+  text-align: center;
+  font-size: 36px;
+}
+
+div#main > form.new-board > label {
+  display: block;
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+div.member-inputs {
+  width: 500px;
+  margin-left: 40px;
+}
+
+.lists-container > .lists {
+  overflow: scroll;
+}
+
+div.list {
+  width: 250px;
+  background: #ccc;
+  float: left;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
+.list > strong {
+  padding-top: 5px;
+  font-size: 24px;
+  background: #bbb;
+  display: block;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.list > ul.cards {
+  padding: 0;
+  border-radius: 5px;
+}
+
+ul.cards > li.card {
+  background: #ddd;
+  display: block;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+li.card > .hidden-button {
+  margin: 5px;
+}
+
+li.card > .hidden-button > strong {
+  display: block;
+  font-size: 18px;
+}
+
+li.card > .hidden-button > p {
+  font-style: italic;
+  margin-bottom: 0px;
+}
+
+li.card ul.items {
+  padding-left: 5px;
+}
+
+.place-card-form, .destroy-list {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+.add-card {
+  margin-left: 5px;
+}
+
+.add-card > button {
+  margin-bottom: 5px;
+}
+
+button.invis {
+  margin-bottom: 5px;
+}
+
+.new-list {
+  float: right;
 }

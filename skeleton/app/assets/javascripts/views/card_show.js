@@ -76,8 +76,8 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
   addItem: function (event) {
     var item = new TrelloClone.Models.Item({card_id: this.model.id})
     var content = this.template_add_item({item: item});
-    $(".item-form-container").html(content);
-    $(".item-form-container").prepend("<strong>New Item</strong>")
+    this.$el.find(".item-form-container").html(content);
+    this.$el.find(".item-form-container").prepend("<strong>New Item</strong>")
 
     return this;
   },
@@ -86,7 +86,7 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
     event.preventDefault();
     var data = $(event.target).serializeJSON();
     data.card_id = this.model.id;
-    
+
     this.items.create(data, {
       success: function () {
         this.render();

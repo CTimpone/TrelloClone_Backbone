@@ -33,7 +33,7 @@ TrelloClone.Views.Item = Backbone.CompositeView.extend({
     var baseData = $(event.target).serializeJSON();
     var data = {item: baseData};
 
-    x= this.model.save(data, {
+    this.model.save(data, {
       success: function () {
         this.render()
       }.bind(this)
