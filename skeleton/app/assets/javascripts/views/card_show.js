@@ -17,17 +17,27 @@ TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.board = options.board;
+    this.assignments = new TrelloClone.Collections.CardAssignments({card_id: this.model.id})
+    this.assignments.fetch();
   },
 
   render: function () {
     var content = this.template_show({card: this.model});
     this.$el.html(content);
 
-    var assignmentSubview = new TrelloClone.Views.AssignmentItemView({model: this.model, user: this.board.author()});
+    var assignmentSubview = new TrelloClone.Views.AssignmentItem({
+      model: this.model,
+      user: this.board.author(),
+      collection: this.assignments
+    });
     this.addSubview(".checkbox-list", assignmentSubview);
 
     this.board.members().each(function (member) {
-      assignmentSubview = new TrelloClone.Views.AssignmentItemView({model: this.model, user: member});
+      assignmentSubview = new TrelloClone.Views.AssignmentItem({
+        model: this.model,
+        user: member,
+        collection: this.assignments
+      });
       this.addSubview(".checkbox-list", assignmentSubview);
     }.bind(this));
 

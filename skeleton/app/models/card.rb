@@ -16,6 +16,7 @@ class Card < ActiveRecord::Base
   has_many :items, dependent: :destroy
   has_many :card_assignments, dependent: :destroy
   has_many :assigned_users, through: :card_assignments, source: :user
+  has_one :board, through: :list, source: :board
 
   default_scope { order(:ord) }
 end

@@ -1,5 +1,11 @@
 <label>
 <%= user.escape('email') %>
-<input type="checkbox" name="<%= user.escape('email') %>" value="">
+<input type="checkbox"
+       class="assignment-checkbox"
+       name="user_id"
+       <% if (assigned) {%>
+         checked
+       <% } %>
+       >
 </label>
 <br>

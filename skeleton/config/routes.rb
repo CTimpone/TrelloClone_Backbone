@@ -9,8 +9,10 @@ TrelloClone::Application.routes.draw do
     resources :boards, except: [:new, :edit]
     resources :board_memberships, only: [:create]
     resources :lists, only: [:create, :update, :destroy]
-    resources :cards, only: [:create, :update, :destroy]
-
+    resources :card_assignments, only: [:create, :destroy]
+    resources :cards, only: [:create, :update, :destroy] do
+      resources :card_assignments, only: :index
+    end
 
     # resources :items
     # resources :card_assignments
