@@ -9,6 +9,22 @@ TrelloClone.Models.Board = Backbone.Model.extend({
     return this._lists;
   },
 
+  author: function () {
+    if (!this._author) {
+      this._author = new TrelloClone.Models.User([]);
+    }
+
+    return this._author;
+  },
+
+  members: function () {
+    if (!this._members) {
+      this._members = new TrelloClone.Collections.Users([])
+    }
+
+    return this._members;
+  },
+
   parse: function (response) {
     if (response.lists) {
       this.lists().set(response.lists);
@@ -17,6 +33,17 @@ TrelloClone.Models.Board = Backbone.Model.extend({
       });
       delete response.lists;
     }
+
+    if (response.author) {
+      this.author().set(response.author);
+      delete response.author;
+    }
+
+    if (response.members) {
+      this.members().set(response.members);
+      delete response.members;
+    }
+
     return response;
   }
 });
