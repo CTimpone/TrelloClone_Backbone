@@ -3,7 +3,7 @@ TrelloClone.Collections.Lists = Backbone.Collection.extend({
     this.board_id = options.board_id;
   },
 
-  url: "/api/lists",
+  url: "/api/lists/",
 
   model: TrelloClone.Models.List,
 

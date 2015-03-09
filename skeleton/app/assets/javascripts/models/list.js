@@ -7,5 +7,14 @@ TrelloClone.Models.List = Backbone.Model.extend({
     }
 
     return this._cards;
+  },
+
+  parse: function (response) {
+    if (response.cards) {
+      this.cards().set(response.cards, {parse: true});
+      delete response.cards;
+    }
+
+    return response;
   }
 });
