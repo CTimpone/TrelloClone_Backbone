@@ -10,7 +10,8 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     "click .destroy-list": "deleteList"
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.board = options.board;
     this.cards = this.model.cards();
     this.listenTo(this.cards, "add sort sync remove", this.render);
     this.listenTo(this.model, "sync", this.render);
@@ -23,9 +24,8 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 
     if (this.cards.length > 0) {
       this.cards.each(function (card) {
-        var $selector = this.$el.find("ul");
-        var subView = new TrelloClone.Views.CardShow({model: card});
-        this.addSubview("ul", subView);
+        var subView = new TrelloClone.Views.CardShow({model: card, board: this.board});
+        this.addSubview(".cards", subView);
       }.bind(this));
     }
 

@@ -1,4 +1,4 @@
-TrelloClone.Views.CardShow = Backbone.View.extend({
+TrelloClone.Views.CardShow = Backbone.CompositeView.extend({
   tagName: "li",
 
   attributes: {
@@ -15,9 +15,21 @@ TrelloClone.Views.CardShow = Backbone.View.extend({
 
   template_change: JST["card_change"],
 
+  initialize: function (options) {
+    this.board = options.board;
+  },
+
   render: function () {
     var content = this.template_show({card: this.model});
     this.$el.html(content);
+
+    var assignmentSubview = new TrelloClone.Views.AssignmentItemView({model: this.model, user: this.board.author()});
+    this.addSubview(".checkbox-list", assignmentSubview);
+
+    this.board.members().each(function (member) {
+      assignmentSubview = new TrelloClone.Views.AssignmentItemView({model: this.model, user: member});
+      this.addSubview(".checkbox-list", assignmentSubview);
+    }.bind(this));
 
     return this;
   },
